@@ -1,0 +1,33 @@
+@import url("https://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+
+.highcharts-figure {
+    margin: 0;
+    border: 1px solid whitesmoke;
+    box-shadow: 3px 3px 5px rgba(139, 139, 139, 0.5);
+    border-radius: 5px;
+    
+}
+
+#parent-container {
+    position: relative; /* Make sure the parent container is positioned */
+}
+
+#container {
+    height: 350px;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: ghostwhite;
+}
+
+.center-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: rgb(80, 80, 150);
+}
+
+
