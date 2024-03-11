@@ -1,61 +1,3 @@
-(async () => {
-  try {
-      // Fetch data from the API
-      const response = await fetch('https://webanalyticals.onrender.com/getUsersData');
-      const data = await response.json();
-
-      // Log data for debugging
-      console.log('Data:', data);
-
-      // Calculate device counts
-      const deviceCounts = data.reduce((counts, entry) => {
-          if (entry.userInfo && entry.userInfo.deviceType) {
-              counts[entry.userInfo.deviceType] = (counts[entry.userInfo.deviceType] || 0) + 1;
-          } else {
-              console.warn('Invalid entry:', entry);
-          }
-          return counts;
-      }, {});
-
-      // Prepare data for the donut chart
-      const donutData = Object.entries(deviceCounts).map(([deviceType, count]) => ({
-          name: deviceType,
-          y: count,
-      }));
-
-      // Calculate total count
-      const totalCount = Object.values(deviceCounts).reduce((total, count) => total + count, 0);
-
-      // Create the donut chart
-      Highcharts.chart('container', {
-          chart: {
-              type: 'pie'
-          },
-          title: {
-              text: 'Active User by Device'
-          },
-          tooltip: {
-              pointFormat: '{series.name}: <b>{point.y}</b>'
-          },
-          plotOptions: {
-              pie: {
-                  innerSize: '80%', // Specify inner size to create a donut chart
-                  depth: 50 // Add a 3D effect to the chart
-              }
-          },
-          series: [{
-              name: 'Count',
-              data: donutData
-          }]
-      });
-
-      // Display total count
-      document.getElementById('total-count').innerText = 'Total Count: ' + totalCount;
-  } catch (error) {
-      console.error('An error occurred:', error);
-  }
-})();
-
 
 
 const getDate = new Date();
@@ -356,7 +298,7 @@ async function sendDeviceInfo(deviceTypeInfo) {
  
     if (!response.ok) {
       throw new Error(
-        `Error sending loctioninfo to saveMapData API: ${response.status}`
+        `Error sending deviceinfo to saveDeviceData API: ${response.status}`
       );
     }
     const deviceData = await response.json();
