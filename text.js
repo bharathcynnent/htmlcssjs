@@ -368,12 +368,24 @@ async function sendDeviceInfo(deviceTypeInfo) {
   }
 }
 // Function to detect the type of device based on user agent
-function detectDeviceType() {
-  const userAgent = navigator.userAgent;
+// function detectDeviceType() {
+//   const userAgent = navigator.userAgent;
  
-  if (/tablet|ipad|playbook|silk|(android(?!.*mobile))/i.test(userAgent)) {
+//   if (/tablet|ipad|playbook|silk|(android(?!.*mobile))/i.test(userAgent)) {
+//       return 'tablet';
+//   } else if (/mobile|iphone|ipod|blackberry|opera mini|iemobile|windows phone|trident|opera mobi|mobilesafari|htc|nokia|sony|symbian|samsung|lg|htc|mot|mot\-/i.test(userAgent)) {
+//       return 'mobile';
+//   } else {
+//       return 'pc';
+//   }
+// }
+
+function detectDeviceType() {
+  const userAgent = navigator.userAgent.toLowerCase();
+
+  if (/ipad|tablet|playbook|silk/i.test(userAgent)) {
       return 'tablet';
-  } else if (/mobile|iphone|ipod|blackberry|opera mini|iemobile|windows phone|trident|opera mobi|mobilesafari|htc|nokia|sony|symbian|samsung|lg|htc|mot|mot\-/i.test(userAgent)) {
+  } else if (/mobile|iphone|ipod|blackberry|opera mini|iemobile|windows phone|trident|opera mobi|mobilesafari|htc|nokia|symbian|samsung|lg|mot/i.test(userAgent)) {
       return 'mobile';
   } else {
       return 'pc';
